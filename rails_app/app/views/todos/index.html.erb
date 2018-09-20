@@ -1,0 +1,14 @@
+Hello World
+
+<ul>
+  <% @todos.each do |todo| %>
+    <li>
+      <%= todo.title %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_tag todos_path, method: :post do %>
+  <%= text_field_tag :title %>
+  <%= button_tag 'Add todo' %>
+<% end %>
