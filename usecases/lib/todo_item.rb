@@ -5,12 +5,20 @@ class TodoItem
     @completed = false
   end
 
+  def title
+    @title
+  end
+
   def completed?
     @completed
   end
 
   def complete
     @completed = true
+  end
+
+  def ==(todo_item)
+    self.title == todo_item.title
   end
 
   def to_s

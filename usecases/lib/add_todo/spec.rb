@@ -21,6 +21,21 @@ module AddTodo
       expect(todo_repository.count()).to eq(1)
     end
 
+    it 'does not add blank todos' do
+      interactor.execute('  ')
+      expect(todo_repository.count()).to eq(0)
+    end
+
+    it 'does not allow todos longer than 100 chars' do
+      interactor.execute('c' * 101)
+      expect(todo_repository.count()).to eq(0)
+    end
+    
+    it 'allows todos shorter than 101 chars' do
+      interactor.execute('c' * 100)
+      expect(todo_repository.count()).to eq(1)
+    end
+
   end
 
 end

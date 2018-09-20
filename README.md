@@ -1,5 +1,4 @@
 How to run the tests?
-
 ```
-bin/rspec -I . -P ./**/*spec.rb
+bundle exec rspec -I . -P ./**/*spec.rb
 ```

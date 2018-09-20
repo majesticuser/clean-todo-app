@@ -13,7 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_09_20_090313) do
 
   create_table "todos", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
+    t.boolean "completed", default: false, null: false
   end
 
 end

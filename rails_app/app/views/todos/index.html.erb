@@ -1,9 +1,21 @@
-Hello World
+<h1>Todos</h1>
 
 <ul>
   <% @todos.each do |todo| %>
     <li>
-      <%= todo.title %>
+      <% if todo.completed? %>
+        <strike><%= todo.title %></strike>
+      <% else %>
+        <%= todo.title %>
+      <% end %>
+      <%= form_tag todo_path(todo), method: :delete, style: "display: inline-block" do %>
+        <%= hidden_field_tag :title, todo.title %>
+        <%= button_tag 'x' %>
+      <% end %>
+      <%= form_tag complete_todo_path(todo), method: :patch, style: "display: inline-block" do %>
+        <%= hidden_field_tag :title, todo.title %>
+        <%= button_tag '✔' %>
+      <% end %>
     </li>
   <% end %>
 </ul>
