@@ -1,4 +1,9 @@
 PATH
+  remote: ../presenters
+  specs:
+    clean-todo-presenters (0.0.1)
+
+PATH
   remote: ../usecases
   specs:
     clean-todo-usecases (0.0.1)
@@ -201,6 +206,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chromedriver-helper
+  clean-todo-presenters!
   clean-todo-usecases!
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)

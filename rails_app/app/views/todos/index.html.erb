@@ -1,26 +1,33 @@
 <h1>Todos</h1>
 
 <ul>
-  <% @todos.each do |todo| %>
+  <% @view_model.todos.each do |todo| %>
     <li>
-      <% if todo.completed? %>
+      <% if todo.striked? %>
         <strike><%= todo.title %></strike>
       <% else %>
         <%= todo.title %>
       <% end %>
-      <%= form_tag todo_path(todo), method: :delete, style: "display: inline-block" do %>
-        <%= hidden_field_tag :title, todo.title %>
-        <%= button_tag 'x' %>
+      
+      <% if todo.deletable? %>
+        <%= form_tag todo_path(todo), method: :delete, style: "display: inline-block" do %>
+          <%= hidden_field_tag :title, todo.title %>
+          <%= button_tag 'x' %>
+        <% end %>
       <% end %>
-      <%= form_tag complete_todo_path(todo), method: :patch, style: "display: inline-block" do %>
-        <%= hidden_field_tag :title, todo.title %>
-        <%= button_tag '✔' %>
+
+      <% if todo.completable? %>
+        <%= form_tag complete_todo_path(todo), method: :patch, style: "display: inline-block" do %>
+          <%= hidden_field_tag :title, todo.title %>
+          <%= button_tag '✔' %>
+        <% end %>
       <% end %>
+
     </li>
   <% end %>
 </ul>
 
 <%= form_tag todos_path, method: :post do %>
   <%= text_field_tag :title %>
-  <%= button_tag 'Add todo' %>
+  <%= button_tag @view_model.add_button_text %>
 <% end %>

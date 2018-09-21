@@ -17,6 +17,14 @@ class TodoItem
     @completed = true
   end
 
+  def deletable?
+    !@completed
+  end
+
+  def completable?
+    !@completed
+  end
+
   def ==(todo_item)
     self.title == todo_item.title
   end

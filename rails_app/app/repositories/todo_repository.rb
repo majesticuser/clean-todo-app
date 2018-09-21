@@ -18,6 +18,18 @@ class TodoRepository
 
   def find(todo_item)
     todo = Todo.find_by!(title: todo_item.title)
+    map_to_domain_model(todo)
+  end
+
+  def all
+    Todo.all.map do |todo|
+      map_to_domain_model(todo)
+    end
+  end
+
+  private
+
+  def map_to_domain_model(todo)
     item = TodoItem.new(todo.title)
     if todo.completed?
       item.complete
@@ -25,8 +37,5 @@ class TodoRepository
     item
   end
 
-  def all
-    Todo.all
-  end
 
 end
